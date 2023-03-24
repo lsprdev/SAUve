@@ -13,12 +13,10 @@ class FormPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'AutoCaptive',
-                style: TextStyle(
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.bold,
-                ),
+              Image.asset(
+                "assets/logo.png",
+                fit: BoxFit.contain,
+                height: 72,
               ),
               const SizedBox(height: 20.0),
               const TextField(

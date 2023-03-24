@@ -30,14 +30,35 @@ class ButtonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AutoCaptive'),
+        iconTheme: const IconThemeData(color: Colors.black),
+        title: Image.asset(
+              "assets/logo.png",
+              fit: BoxFit.contain,
+              height: 52,
+            ),
+        backgroundColor: Colors.white,
         centerTitle: true,
       ),
       body: Center(
-          child: ElevatedButton(
-            child: const Text('Conectar ao Captive Portal'),
-            onPressed: makeRequest,
-          ),
+          child: MaterialButton(
+                  height: 45.0,
+                  minWidth: 250.0,
+                  color: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/");
+                  },
+                  child: const Text(
+                    'Conectar ao Captive Portal',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                    )
+                  ),
+                )
         ),
     );
   }
