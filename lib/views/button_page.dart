@@ -1,19 +1,19 @@
 import 'package:dio/dio.dart';
-
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ButtonPage extends StatelessWidget {
   const ButtonPage({super.key});
 
-  void makeRequest() async {
+  void makeRequest(String auth_user, String auth_pass) async {
     // Create Dio instance
     Dio dio = Dio();
 
     // Set request URL and data
     String url = "https://captive-portal.araquari.ifc.edu.br:8003/index.php?zone=vlan_40_route_v4";
     FormData formData = FormData.fromMap({
-      "auth_user": "",
-      "auth_pass": "",
+      "auth_user": auth_user,
+      "auth_pass": auth_pass,
       "accept": "True",
     });
 
@@ -41,20 +41,25 @@ class ButtonPage extends StatelessWidget {
       ),
       body: Center(
           child: MaterialButton(
-                  height: 45.0,
+                  height: 55.0,
                   minWidth: 250.0,
                   color: Colors.black,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/");
+                  onPressed: () async {
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    String? username = prefs.getString("username");
+                    String? password = prefs.getString("password");
+                    makeRequest(username.toString(), password.toString());
+                    print(username.toString() + " " + password.toString());
+                    // print(pref.getString("password").toString());
                   },
                   child: const Text(
-                    'Conectar ao Captive Portal',
+                    'Conectar à internet',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 15,
+                      fontSize: 25,
                       fontWeight: FontWeight.w700,
                     )
                   ),

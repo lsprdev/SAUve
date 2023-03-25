@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class FormPage extends StatelessWidget {
-  const FormPage({super.key});
+class FormPage extends StatefulWidget {
+
+  FormPage({super.key});
+
+  @override
+  State<FormPage> createState() => _FormPageState();
+}
+
+class _FormPageState extends State<FormPage> {
+  final TextEditingController userController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +29,9 @@ class FormPage extends StatelessWidget {
                 height: 72,
               ),
               const SizedBox(height: 20.0),
-              const TextField(
-                decoration: InputDecoration(
+             TextField(
+                controller: userController,
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
@@ -28,9 +39,10 @@ class FormPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20.0),
-              const TextField(
+              TextField(
+                controller: passwordController,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
@@ -44,8 +56,12 @@ class FormPage extends StatelessWidget {
                   height: 45.0,
                   minWidth: 300.0,
                   color: Colors.black,
-                  onPressed: () {
+                  onPressed: () async {
                     Navigator.pushNamed(context, "/button");
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    prefs.setBool("isData", true);
+                    prefs.setString("username", userController.text);
+                    prefs.setString("password", passwordController.text);
                   },
                   child: const Text(
                     'Salvar',

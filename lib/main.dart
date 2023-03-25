@@ -1,20 +1,35 @@
 import 'package:auto_captive/views/button_page.dart';
 import 'package:auto_captive/views/form_page.dart';
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
-void main() => runApp(const MyApp());
+import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance(); 
+  var isData = prefs.getBool("isData");
+  var username = prefs.getString("username");
+  var password = prefs.getString("password");
+  SystemChrome.setPreferredOrientations([
+  DeviceOrientation.portraitUp,
+  DeviceOrientation.portraitDown,
+  ]).then((value) => runApp(MyApp(isData: isData, username: username, password: password)));
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool? isData;
+  final String? username;
+  final String? password;
+  const MyApp({super.key, required this.isData, this.username, this.password});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'AutoCaptive',
-      initialRoute: "/",
+      title: 'SAUve',
+      initialRoute: isData == true ? '/button' : '/',
       routes: {
-        "/": (context) => const FormPage(),
+        "/": (context) => FormPage(),
         "/button": (context) => const ButtonPage(),
       },
     );
