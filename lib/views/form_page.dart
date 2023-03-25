@@ -12,7 +12,7 @@ class FormPage extends StatefulWidget {
 class _FormPageState extends State<FormPage> {
   final TextEditingController userController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
+  late bool _passwordVisible;
   @override
   void initState() {
     super.initState();
@@ -20,6 +20,7 @@ class _FormPageState extends State<FormPage> {
       userController.text = prefs.getString("username") ?? "";
       passwordController.text = prefs.getString("password") ?? "";
     });
+    _passwordVisible = false;
   }
 
   @override
@@ -50,14 +51,27 @@ class _FormPageState extends State<FormPage> {
               const SizedBox(height: 20.0),
               TextField(
                 controller: passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
+                obscureText: !_passwordVisible,
+                autofocus: false,
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  labelText: 'Senha',
+                   suffixIcon: IconButton(
+                      icon: Icon(
+                        _passwordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                        color: Colors.black,
+                        ),
+                      onPressed: () {
+                        setState(() {
+                            _passwordVisible = !_passwordVisible;
+                        });
+                      }),
+                      labelText: 'Senha',
+                    ), 
                 ),
-              ),
               const SizedBox(height: 20.0),
               Align(
                 alignment: Alignment.center, 
