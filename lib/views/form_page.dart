@@ -96,6 +96,10 @@ class _FormPageState extends State<FormPage> {
                   ),
                 )
               ),
+              const SizedBox(height: 20.0),
+              const Center(
+                child: Text("Desenvolvido por: Venni"),
+              ),
             ]
           ),
         ),

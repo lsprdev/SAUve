@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -62,13 +64,12 @@ class ButtonPage extends StatelessWidget {
                         try {
                           final result = await InternetAddress.lookup('google.com');
                           if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-                            final snackbar = SnackBar(content: Text('Conectado à internet'), backgroundColor: Colors.green);
+                            const snackbar = SnackBar(content: Text('Conectado à internet'), backgroundColor: Colors.green);
                             ScaffoldMessenger.of(context).showSnackBar(snackbar);
                           }
                         } on SocketException catch (_) {
-                          final snackbar = SnackBar(content: Text('Não foi possível conectar à internet'), backgroundColor: Colors.red); 
+                          const snackbar = SnackBar(content: Text('Não foi possível conectar à internet'), backgroundColor: Colors.red); 
                           ScaffoldMessenger.of(context).showSnackBar(snackbar);
-
                         }
 
                       },
@@ -82,10 +83,7 @@ class ButtonPage extends StatelessWidget {
                       ),
                     )
             ),
-            const SizedBox(height: 20.0),
-            const Center(
-              child: Text("Desenvolvido por: TheVenni"),
-            )
+            const SizedBox(height: 20.0)
         ],
       ),
     );
