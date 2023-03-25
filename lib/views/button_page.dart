@@ -36,6 +36,7 @@ class ButtonPage extends StatelessWidget {
               fit: BoxFit.contain,
               height: 52,
             ),
+        elevation: 4,
         backgroundColor: Colors.white,
         centerTitle: true,
       ),

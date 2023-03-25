@@ -14,6 +14,15 @@ class _FormPageState extends State<FormPage> {
   final TextEditingController passwordController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    SharedPreferences.getInstance().then((prefs) {
+      userController.text = prefs.getString("username") ?? "";
+      passwordController.text = prefs.getString("password") ?? "";
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
