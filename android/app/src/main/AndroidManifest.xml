@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.auto_captive">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="auto_captive"
+        android:label="SAUve!"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
