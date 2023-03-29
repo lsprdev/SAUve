@@ -4,10 +4,40 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class ButtonPage extends StatelessWidget {
+class ButtonPage extends StatefulWidget {
   const ButtonPage({super.key});
 
+  @override
+  State<ButtonPage> createState() => _ButtonPageState();
+}
+
+class _ButtonPageState extends State<ButtonPage> {
+  late BannerAd _bannerAd;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize banner ad
+    _bannerAd = BannerAd(
+      adUnitId: 'ca-app-pub-9983012827228298/2281220772',
+      size: AdSize.banner,
+      request: const AdRequest(),
+      listener: const BannerAdListener(),
+    );
+
+    // Load banner ad
+    _bannerAd.load();
+  }
+
+  @override
+  void dispose() {
+    // Dispose banner ad
+    _bannerAd.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +113,12 @@ class ButtonPage extends StatelessWidget {
                       ),
                     )
             ),
-            const SizedBox(height: 20.0)
+            const SizedBox(height: 20.0),
+            // SizedBox(
+            //   height: _bannerAd.size.height.toDouble(),
+            //   width: _bannerAd.size.width.toDouble(),
+            //   child: AdWidget(ad: _bannerAd),
+            // ),
         ],
       ),
     );
