@@ -29,10 +29,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SAUve',
-      initialRoute: isData == true ? '/button' : '/',
+      initialRoute: isData == true ? '/' : '/form',
       routes: {
-        "/": (context) => FormPage(),
-        "/button": (context) => const ButtonPage(),
+        "/": (context) => const ButtonPage(),
+        "/form": (context) => FormPage(),
       },
     );
   }

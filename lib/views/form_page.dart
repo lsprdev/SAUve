@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'button_page.dart';
+
 class FormPage extends StatefulWidget {
 
   FormPage({super.key});
@@ -80,7 +82,11 @@ class _FormPageState extends State<FormPage> {
                   minWidth: 300.0,
                   color: Colors.black,
                   onPressed: () async {
-                    Navigator.pushReplacementNamed(context, "/button");
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ButtonPage()),
+                    );
+
                     SharedPreferences prefs = await SharedPreferences.getInstance();
                     prefs.setBool("isData", true);
                     prefs.setString("username", userController.text);
