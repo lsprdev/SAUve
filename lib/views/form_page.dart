@@ -28,12 +28,12 @@ class _FormPageState extends State<FormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(40.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
                 "assets/logo.png",
@@ -101,10 +101,6 @@ class _FormPageState extends State<FormPage> {
                     )
                   ),
                 )
-              ),
-              const SizedBox(height: 270.0),
-              const Center(
-                child: Text("Desenvolvido por: Gabriel L. P."),
               ),
             ]
           ),

@@ -105,14 +105,14 @@ class _ButtonPageState extends State<ButtonPage> {
         backgroundColor: Colors.black,
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
               height: _bannerAd2.size.height.toDouble(),
               width: _bannerAd2.size.width.toDouble(),
               child: AdWidget(ad: _bannerAd2),
           ),
-          const SizedBox(height: 260.0),
+          const SizedBox(height: 10.0),
           Center(
               child: MaterialButton(
                       height: 55.0,
@@ -148,17 +148,23 @@ class _ButtonPageState extends State<ButtonPage> {
                       ),
                     )
             ),
-            const SizedBox(height: 270.0), 
-            SizedBox(
-              height: _bannerAd3.size.height.toDouble(),
-              width: _bannerAd3.size.width.toDouble(),
-              child: AdWidget(ad: _bannerAd3),
+            const SizedBox(height: 10.0),
+            Column(
+              children: [
+                    SizedBox(
+                  height: _bannerAd3.size.height.toDouble(),
+                  width: _bannerAd3.size.width.toDouble(),
+                  child: AdWidget(ad: _bannerAd3),
+                ),
+                SizedBox(
+                  height: _bannerAd.size.height.toDouble(),
+                  width: _bannerAd.size.width.toDouble(),
+                  child: AdWidget(ad: _bannerAd),
+                ),
+              ],
             ),
-            SizedBox(
-              height: _bannerAd.size.height.toDouble(),
-              width: _bannerAd.size.width.toDouble(),
-              child: AdWidget(ad: _bannerAd),
-            ),
+            
+            
         ],
       ),
     );
