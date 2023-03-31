@@ -15,13 +15,31 @@ class ButtonPage extends StatefulWidget {
 
 class _ButtonPageState extends State<ButtonPage> {
   late BannerAd _bannerAd;
+  late BannerAd _bannerAd2;
+  late BannerAd _bannerAd3;
 
   @override
   void initState() {
     super.initState();
     // Initialize banner ad
     _bannerAd = BannerAd(
-      adUnitId: 'ca-app-pub-9983012827228298/2281220772',
+      adUnitId: 'ca-app-pub-9983012827228298/2281220772', // Banner
+      size: AdSize.banner,
+      request: const AdRequest(),
+      listener: const BannerAdListener(),
+    );
+
+    // Initialize banner ad
+    _bannerAd2 = BannerAd(
+      adUnitId: 'ca-app-pub-9983012827228298/1016202577', // Banner 2
+      size: AdSize.banner,
+      request: const AdRequest(),
+      listener: const BannerAdListener(),
+    );
+    
+    // Initialize banner ad
+    _bannerAd3 = BannerAd(
+      adUnitId: 'ca-app-pub-9983012827228298/5498496777', // Banner 3
       size: AdSize.banner,
       request: const AdRequest(),
       listener: const BannerAdListener(),
@@ -29,12 +47,16 @@ class _ButtonPageState extends State<ButtonPage> {
 
     // Load banner ad
     _bannerAd.load();
+    _bannerAd2.load();
+    _bannerAd3.load();
   }
 
   @override
   void dispose() {
     // Dispose banner ad
     _bannerAd.dispose();
+    _bannerAd2.dispose();
+    _bannerAd3.dispose();
 
     super.dispose();
   }
@@ -77,6 +99,12 @@ class _ButtonPageState extends State<ButtonPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          SizedBox(
+              height: _bannerAd2.size.height.toDouble(),
+              width: _bannerAd2.size.width.toDouble(),
+              child: AdWidget(ad: _bannerAd2),
+          ),
+          const SizedBox(height: 260.0),
           Center(
               child: MaterialButton(
                       height: 55.0,
@@ -112,7 +140,12 @@ class _ButtonPageState extends State<ButtonPage> {
                       ),
                     )
             ),
-            const SizedBox(height: 310.0),
+            const SizedBox(height: 270.0), 
+            SizedBox(
+              height: _bannerAd3.size.height.toDouble(),
+              width: _bannerAd3.size.width.toDouble(),
+              child: AdWidget(ad: _bannerAd3),
+            ),
             SizedBox(
               height: _bannerAd.size.height.toDouble(),
               width: _bannerAd.size.width.toDouble(),
