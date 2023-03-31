@@ -62,7 +62,6 @@ class _ButtonPageState extends State<ButtonPage> {
       print(error.toString());
     }
   }
-
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
@@ -76,7 +75,7 @@ class _ButtonPageState extends State<ButtonPage> {
         centerTitle: true,
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Center(
               child: MaterialButton(
@@ -113,12 +112,12 @@ class _ButtonPageState extends State<ButtonPage> {
                       ),
                     )
             ),
-            const SizedBox(height: 20.0),
-            // SizedBox(
-            //   height: _bannerAd.size.height.toDouble(),
-            //   width: _bannerAd.size.width.toDouble(),
-            //   child: AdWidget(ad: _bannerAd),
-            // ),
+            const SizedBox(height: 310.0),
+            SizedBox(
+              height: _bannerAd.size.height.toDouble(),
+              width: _bannerAd.size.width.toDouble(),
+              child: AdWidget(ad: _bannerAd),
+            ),
         ],
       ),
     );
