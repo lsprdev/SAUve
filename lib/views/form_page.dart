@@ -80,7 +80,7 @@ class _FormPageState extends State<FormPage> {
                   minWidth: 300.0,
                   color: Colors.black,
                   onPressed: () async {
-                    Navigator.pushNamed(context, "/button");
+                    Navigator.pushReplacementNamed(context, "/button");
                     SharedPreferences prefs = await SharedPreferences.getInstance();
                     prefs.setBool("isData", true);
                     prefs.setString("username", userController.text);

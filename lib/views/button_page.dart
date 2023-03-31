@@ -87,6 +87,7 @@ class _ButtonPageState extends State<ButtonPage> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
+        automaticallyImplyLeading: false,
         title: Image.asset(
               "assets/logo.png",
               fit: BoxFit.contain,
@@ -95,6 +96,13 @@ class _ButtonPageState extends State<ButtonPage> {
         elevation: 4,
         backgroundColor: Colors.white,
         centerTitle: true,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          Navigator.pushReplacementNamed(context, "/");
+        },
+        child: Icon(Icons.person),
+        backgroundColor: Colors.black,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
