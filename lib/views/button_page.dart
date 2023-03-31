@@ -99,7 +99,7 @@ class _ButtonPageState extends State<ButtonPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          Navigator.pushReplacementNamed(context, "/");
+          Navigator.pushReplacementNamed(context, "/form");
         },
         child: Icon(Icons.person),
         backgroundColor: Colors.black,
