@@ -14,52 +14,6 @@ class ButtonPage extends StatefulWidget {
 }
 
 class _ButtonPageState extends State<ButtonPage> {
-  late BannerAd _bannerAd;
-  late BannerAd _bannerAd2;
-  late BannerAd _bannerAd3;
-
-  @override
-  void initState() {
-    super.initState();
-    // Initialize banner ad
-    _bannerAd = BannerAd(
-      adUnitId: 'ca-app-pub-9983012827228298/2281220772', // Banner
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: const BannerAdListener(),
-    );
-
-    // Initialize banner ad
-    _bannerAd2 = BannerAd(
-      adUnitId: 'ca-app-pub-9983012827228298/1016202577', // Banner 2
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: const BannerAdListener(),
-    );
-    
-    // Initialize banner ad
-    _bannerAd3 = BannerAd(
-      adUnitId: 'ca-app-pub-9983012827228298/5498496777', // Banner 3
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: const BannerAdListener(),
-    );
-
-    // Load banner ad
-    _bannerAd.load();
-    _bannerAd2.load();
-    _bannerAd3.load();
-  }
-
-  @override
-  void dispose() {
-    // Dispose banner ad
-    _bannerAd.dispose();
-    _bannerAd2.dispose();
-    _bannerAd3.dispose();
-
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +33,8 @@ class _ButtonPageState extends State<ButtonPage> {
     // Make request
     try {
       Response response = await dio.post(url, data: formData);
-      print(response.data);
     } catch (error) {
-      print(error.toString());
+      print(error);
     }
   }
     return Scaffold(
@@ -93,9 +46,23 @@ class _ButtonPageState extends State<ButtonPage> {
               fit: BoxFit.contain,
               height: 52,
             ),
-        elevation: 4,
+        elevation: 1,
         backgroundColor: Colors.white,
-        centerTitle: true,
+        centerTitle: false,
+        actions: [
+          IconButton(
+            onPressed: () {}, 
+            icon: const Icon(Icons.restaurant_menu)
+          ),
+          IconButton(
+            icon: const Icon(Icons.book),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.favorite_border), 
+            onPressed: () {},
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -105,14 +72,8 @@ class _ButtonPageState extends State<ButtonPage> {
         backgroundColor: Colors.black,
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
-              height: _bannerAd2.size.height.toDouble(),
-              width: _bannerAd2.size.width.toDouble(),
-              child: AdWidget(ad: _bannerAd2),
-          ),
-          const SizedBox(height: 10.0),
           Center(
               child: MaterialButton(
                       height: 55.0,
@@ -149,20 +110,6 @@ class _ButtonPageState extends State<ButtonPage> {
                     )
             ),
             const SizedBox(height: 10.0),
-            Column(
-              children: [
-                    SizedBox(
-                  height: _bannerAd3.size.height.toDouble(),
-                  width: _bannerAd3.size.width.toDouble(),
-                  child: AdWidget(ad: _bannerAd3),
-                ),
-                SizedBox(
-                  height: _bannerAd.size.height.toDouble(),
-                  width: _bannerAd.size.width.toDouble(),
-                  child: AdWidget(ad: _bannerAd),
-                ),
-              ],
-            ),
             
             
         ],
