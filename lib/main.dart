@@ -1,4 +1,5 @@
 import 'package:auto_captive/views/button_page.dart';
+import 'package:auto_captive/views/classes_page.dart';
 import 'package:auto_captive/views/form_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => const ButtonPage(),
         "/form": (context) => FormPage(),
+        "/classes": (context) => const ClassesPage(),
       },
     );
   }
