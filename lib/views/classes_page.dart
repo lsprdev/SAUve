@@ -86,6 +86,7 @@ class _ClassesPageState extends State<ClassesPage> {
         child: const Icon(Icons.arrow_downward),
         backgroundColor: Colors.black,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
