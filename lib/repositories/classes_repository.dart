@@ -6,7 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart';
 
-class ClassesRepo {
+class ClassesRepository {
+  final allClasses = <List<String?>>[];
   getClass() async {
     final link = 'https://horarios.araquari.ifc.edu.br/data/horario2023-1_years_days_horizontal.html';
     final response = await http.get(Uri.parse(link));
@@ -15,16 +16,15 @@ class ClassesRepo {
     final list = document.querySelector('ul');
     final elements= list?.querySelectorAll('li');
 
+
     if (elements != null) {
       for (final element in elements) {
         final text = element.querySelector('a')?.text;
         final href = element.querySelector('a')?.attributes['href'];
 
-        print('Text: $text');
-        print('Href: $href');
-        print('Link: $link$href');
-        print("================================");
+        final classData = [text, href];
 
+        allClasses.add(classData);
       }
     } else {
       print('No elements found');

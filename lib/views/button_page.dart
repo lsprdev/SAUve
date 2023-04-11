@@ -51,17 +51,19 @@ class _ButtonPageState extends State<ButtonPage> {
         centerTitle: false,
         actions: [
           IconButton(
-            onPressed: () {}, 
-            icon: const Icon(Icons.restaurant_menu)
-          ),
-          IconButton(
             icon: const Icon(Icons.book),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "/classes");
+            },
           ),
-          IconButton(
-            icon: const Icon(Icons.favorite_border), 
-            onPressed: () {},
-          ),
+          // IconButton(
+          //   onPressed: () {}, 
+          //   icon: const Icon(Icons.restaurant_menu)
+          // ),
+          // IconButton(
+          //   icon: const Icon(Icons.favorite_border), 
+          //   onPressed: () {},
+          // ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
