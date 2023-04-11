@@ -49,7 +49,7 @@ class _ClassesPageState extends State<ClassesPage> {
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true, 
-        title: Text("Horários de Aulas", style: TextStyle(color: Colors.black)),
+        title: Text("Horário de Aulas", style: TextStyle(color: Colors.black)),
         elevation: 1, 
         backgroundColor: Colors.white,
         centerTitle: false,
