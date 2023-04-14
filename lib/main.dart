@@ -1,3 +1,7 @@
+// ignore_for_file: unnecessary_new, unused_local_variable
+
+import 'dart:io';
+
 import 'package:auto_captive/views/button_page.dart';
 import 'package:auto_captive/views/classes_page.dart';
 import 'package:auto_captive/views/form_page.dart';
@@ -9,6 +13,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
+  HttpOverrides.global = new MyHttpOverrides();
   SharedPreferences prefs = await SharedPreferences.getInstance(); 
   var isData = prefs.getBool("isData");
   var username = prefs.getString("username");
@@ -37,5 +42,13 @@ class MyApp extends StatelessWidget {
         "/classes": (context) => const ClassesPage(),
       },
     );
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
   }
 }

@@ -1,10 +1,10 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, unused_local_variable
 
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class ButtonPage extends StatefulWidget {
   const ButtonPage({super.key});
@@ -34,7 +34,9 @@ class _ButtonPageState extends State<ButtonPage> {
     try {
       Response response = await dio.post(url, data: formData);
     } catch (error) {
-      print(error);
+      if (kDebugMode) {
+        print(error);
+      }
     }
   }
     return Scaffold(
@@ -70,8 +72,8 @@ class _ButtonPageState extends State<ButtonPage> {
         onPressed: () async {
           Navigator.pushReplacementNamed(context, "/form");
         },
-        child: Icon(Icons.person),
         backgroundColor: Colors.black,
+        child: const Icon(Icons.person),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
