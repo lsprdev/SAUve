@@ -5,13 +5,13 @@ import 'package:url_launcher/url_launcher_string.dart';
 class ClassesTile extends StatefulWidget {
   final String? title;
   final String? table;
-  List<String?> classes;
+  Function loadClasses;
 
   ClassesTile({
     super.key,
     required this.title,
     required this.table,
-    required this.classes,
+    required this.loadClasses,
   });
 
   @override
@@ -74,8 +74,10 @@ class _ClassesTileState extends State<ClassesTile> {
                 isPinned = !isPinned!;
                 isPinned == true ? savePinToSharedPrefs(widget.title!) : deletePinFromSharedPrefs(widget.title!);
               });
+
+              // widget.loadClasses();
             },
-            child: isPinned == true
+            child: pinnedItems.contains(widget.title)
                 ? const Icon(
                     Icons.push_pin,
                     color: Colors.black,

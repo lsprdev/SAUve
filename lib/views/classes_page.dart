@@ -32,7 +32,7 @@ class _ClassesPageState extends State<ClassesPage> {
     });
   }
 
-  Future<void> _loadClasses() async {
+  _loadClasses() async {
     setState(() {
       _isLoading = true;
     });
@@ -41,11 +41,18 @@ class _ClassesPageState extends State<ClassesPage> {
     if (classes != null) {
       setState(() {
         _classes = classes;
+        updateListView();
       });
     }
-
     setState(() {
       _isLoading = false;
+    });
+  }
+
+  void updateListView() {
+    _classes.where((element) => pinnedItems.contains(element[0])).forEach((element) {
+        _classes.remove(element);
+        _classes.insert(0, element);
     });
   }
 
@@ -70,12 +77,13 @@ class _ClassesPageState extends State<ClassesPage> {
                 if (index >= _classes.length) {
                   return null;
                 }
-                
+          
                   return ClassesTile(
                     title: _classes[index][0], 
                     table: _classes[index][1], 
-                    classes: _classes[index],
+                    loadClasses: _loadClasses,
                   );
+                
               },
             ),
       floatingActionButton: FloatingActionButton(
